@@ -8,8 +8,8 @@ signinbtn.addEventListener("click", login);
 
 function login() {
     const req = {
-        id: user_id.value,
-        pwd: user_password.value,
+        user_id: user_id.value,
+        user_password: user_password.value,
     };
 
     console.log(req);

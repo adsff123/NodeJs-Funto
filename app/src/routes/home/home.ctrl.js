@@ -18,7 +18,10 @@ const output = {
 
 const process = {
     signin : (req,res) => {
-         console.log(req.body);
+        const user_id = req.body.user_id;
+        const user_password = req.body.user_password;
+
+        console.log(user_id, user_password);
     },
 }
 
