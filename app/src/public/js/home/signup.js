@@ -1,3 +1,5 @@
+"use strict";
+
 function signup() {
     var signupForm = document.signupForm;
     var id = signupForm.user_id;

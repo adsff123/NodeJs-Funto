@@ -10,6 +10,7 @@ const home = require("./src/routes/home");
 // View 세팅
 app.set("views", "./src/views");
 app.set("view engine", "ejs");
+app.use(express.static(`${__dirname}/src/public`)); 
 
 app.use("/", home); //미들웨어 등록하는 메소드
 
