@@ -11,14 +11,15 @@ function login() {
         id: user_id.value,
         pwd: user_password.value,
     };
-    console.log(req); 
 
-    fetch("/login", {
+    console.log(req);
+
+    fetch("/signin", {
         method: "post",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(req),
+        body: JSON.stringify(req), 
     })
      
 }

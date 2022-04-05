@@ -5,8 +5,9 @@ const router = express.Router();
 
 const ctrl = require('./home.ctrl');
 
-router.get('/', ctrl.index );
-router.get('/signup', ctrl.signup );
-router.get('/signin', ctrl.signin );
+router.get('/', ctrl.output.index );
+router.get('/signup', ctrl.output.signup );
+router.get('/signin', ctrl.output.signin ); 
+router.post('/signin', ctrl.process.signin );
 
 module.exports = router;

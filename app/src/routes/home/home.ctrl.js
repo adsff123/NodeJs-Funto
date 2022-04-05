@@ -2,22 +2,31 @@
 
 "use strict";
 
-const index = (req,res) => { 
-    res.render("home/index"); 
-};
+const output = {
+    index : (req,res) => { 
+        res.render("home/index"); 
+    },
+    
+    signin : (req,res) => { 
+        res.render("home/signin"); 
+    },
+    
+    signup :  (req,res) => { 
+        res.render("home/signup");
+    }, 
+}
 
-const signin = (req,res) => { 
-    res.render("home/signin"); 
-};
+const process = {
+    signin : (req,res) => {
+         console.log(req.body);
+    },
+}
 
-const signup = (req,res) => { 
-    res.render("home/signup");
-};
+
 
 module.exports = {
-    index,
-    signin,
-    signup,
+    output,
+    process
 };
 
  
