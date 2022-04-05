@@ -7,11 +7,11 @@ const index = (req,res) => {
 };
 
 const signin = (req,res) => { 
-    res.render("home/signup"); 
+    res.render("home/signin"); 
 };
 
 const signup = (req,res) => { 
-    res.render("home/signin");
+    res.render("home/signup");
 };
 
 module.exports = {
