@@ -4,7 +4,7 @@ const user_id = document.querySelector("#user_id");
 const user_password = document.querySelector("#user_password");
 const signinbtn = document.querySelector("#signinbtn");
 
-signinbtn.addEventListener("click", login);
+signinbtn.addEventListener("click", login); 
 
 function login() {
     const req = {
@@ -12,7 +12,7 @@ function login() {
         user_password: user_password.value,
     };
 
-    console.log(req);
+    console.log(req); 
 
     fetch("/signin", {
         method: "post",
@@ -20,6 +20,6 @@ function login() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(req), 
-    })
+    }).then((res) => res.json()).then((res) => console.log(res ));
      
 }
