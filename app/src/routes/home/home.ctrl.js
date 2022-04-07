@@ -2,6 +2,8 @@
 
 "use strict";
 
+ const UserStorage = require("../../models/UserStorage")
+
 const output = {
     index : (req,res) => { 
         res.render("home/index"); 
@@ -16,29 +18,25 @@ const output = {
     }, 
 };
 
-const users = {
-    db_id: ["adsff123", "mike", "josh", "joey", "danny", "heather"],
-    db_password: ["1234", "1234", "1234", "1234", "1234", "1234"], 
-};
-
 const process = {
-    signin : (req,res) => {
+    signin : (req,res) => { 
         const user_id = req.body.user_id;
         const user_password = req.body.user_password;
 
+        const users = UserStorage.getUsers("db_id", "db_password");
+        
+        const response = {};
         if (users.db_id.includes(user_id)) {
             const idx = users.db_id.indexOf(user_id);
             if (users.db_password[idx] === user_password){
-                return res.json({
-                    sucess: true,
-                });
+                response.success = true; 
+                return res.json(response);
             }
-        }
-
-        return res.json({
-            sucess : false,
-            msg: "로그인 실패",
-        });
+        } 
+        
+        response.success = false; 
+        response.msg = "로그인 실패";
+        return res.json(response);
     }
 };
 
