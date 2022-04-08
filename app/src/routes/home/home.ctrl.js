@@ -24,6 +24,12 @@ const process = {
         const user = new User(req.body); 
         const response = user.signin(); 
         return res.json(response); 
+    },
+
+    signup : (req,res) => {
+        const user = new User(req.body);
+        const response = user.signup(); 
+        return res.json(response);  
     }
 };
 
