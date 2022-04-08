@@ -1,15 +1,15 @@
 "use strict";
 
-const user_id = document.querySelector("#user_id");
-const user_password = document.querySelector("#user_password");
+const id = document.querySelector("#id");
+const password = document.querySelector("#password");
 const signinbtn = document.querySelector("#signinbtn");
 
 signinbtn.addEventListener("click", login); 
 
 function login() {
     const req = {
-        user_id: user_id.value,
-        user_password: user_password.value, 
+        id: id.value,
+        password: password.value, 
     };
 
     fetch("/signin", {
@@ -24,7 +24,7 @@ function login() {
               location.href = '/';
           }
           else {
-              user_password.focus();
+              password.focus();
               alert(res.msg);
           }
 

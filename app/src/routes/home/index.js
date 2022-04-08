@@ -7,7 +7,7 @@ const ctrl = require('./home.ctrl');
 
 router.get('/', ctrl.output.index );
 router.get('/signup', ctrl.output.signup );
-router.get('/signin', ctrl.output.signin ); 
+router.get('/signin', ctrl.output.signin );
 router.post('/signin', ctrl.process.signin );
 
 module.exports = router;

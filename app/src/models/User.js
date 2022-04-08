@@ -9,9 +9,9 @@ class User {
 
     signin() {
         const body = this.body;
-        const {db_id, db_password} = UserStorage.getUserInfo(body.user_id); 
+        const {db_id, db_password} = UserStorage.getUserInfo(body.id); 
         if (db_id){
-            if (db_id === body.user_id && db_password === body.user_password){
+            if (db_id === body.id && db_password === body.password){
                 return {success:true};
             }
             return {success:false, msg : "비밀번호가 일치하지 않습니다."};
