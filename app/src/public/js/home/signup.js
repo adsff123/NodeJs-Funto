@@ -1,4 +1,4 @@
-// 회원가입 화면 자바스크립트
+// 회원가입 클라이언트 자바스크립트
 "use strict";
  
 const id = document.querySelector("#id");
@@ -36,7 +36,7 @@ function signup() {
     email: email.value,
   };
 
-  // 컨트롤러 + 화면(회원가입) 연결
+  // 컨트롤러 + 클라이언트(회원가입) 연결
   fetch("/signup", {
       method: "post",
       headers: {
