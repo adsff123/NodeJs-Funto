@@ -7,9 +7,10 @@ class User {
         this.body = body;
     }
 
-    signin() {
+    async signin() {
         const client = this.body;
-        const {db_id, db_password} = UserStorage.getUserInfo(client.id); 
+        const {db_id, db_password} = await UserStorage.getUserInfo(client.id); 
+           
         if (db_id){
             if (db_id === client.id && db_password === client.password){
                 return {success:true};

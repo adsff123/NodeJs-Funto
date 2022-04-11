@@ -20,9 +20,9 @@ const output = {
 };
 
 const process = {
-    signin : (req,res) => {
+    signin : async (req,res) => {
         const user = new User(req.body); 
-        const response = user.signin(); 
+        const response = await user.signin(); 
         return res.json(response); 
     },
 
