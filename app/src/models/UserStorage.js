@@ -58,7 +58,7 @@ class UserStorage {
         users.db_name.push(userInfo.name);
         users.db_email.push(userInfo.email);
         console.log(users);
-        fs.writeFile("./src/database/users.json", JSON.stringify(users) );
+        fs.writeFile("./src/database/users.json", JSON.stringify(users) ); 
         return {success:true};
     };
  
