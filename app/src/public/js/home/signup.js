@@ -15,7 +15,7 @@ function signup() {
     id.focus();
     return alert("아이디를 입력해 주세요.");
   }
-  if (password !==  passwordCheck) {
+  if (password.value !==  passwordCheck.value) {
     password.focus();
     return alert("비밀번호가 일치 하지 않습니다.");
   }
