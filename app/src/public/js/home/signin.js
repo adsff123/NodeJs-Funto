@@ -1,3 +1,4 @@
+// 로그인 화면 자바스크립트
 "use strict";
 
 const id = document.querySelector("#id");
@@ -12,6 +13,7 @@ function login() {
         password: password.value, 
     };
 
+    // 컨트롤러 + 화면(로그인) 연결
     fetch("/signin", {
         method: "post",
         headers: {

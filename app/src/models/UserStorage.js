@@ -1,9 +1,12 @@
+// 회원 관리 모델
+
 "use strict";
 
 const fs = require("fs").promises;
 
-
 class UserStorage {
+    
+    // 로그인 클라이언트에서 입력 된 사용자 정보
     static #getUserInfo(data, id)  {
         const users = JSON.parse(data);
         const idx = users.db_id.indexOf(id);
@@ -16,6 +19,7 @@ class UserStorage {
         return userInfo;
     };
 
+    // 회원가입 클라이언트에서 입력 된 사용자 정보
     static #getUsers(data, isAll, fields) {
         const users = JSON.parse(data); 
         if (isAll) return users;
@@ -28,6 +32,7 @@ class UserStorage {
         return newUsers;
     };
 
+    // 회원가입 클라이언트에서 입력된 데이터 return
     static getUsers(isAll,  ...fields) {
         return fs
         .readFile("./src/database/users.json") 
@@ -37,6 +42,7 @@ class UserStorage {
         .catch(console.error);
     };
 
+    // 로그인 클라이언트에서 입력된 데이터 return
     static getUserInfo(id) {
         // const users = this.#users;
         return fs
@@ -48,6 +54,7 @@ class UserStorage {
 
     };
 
+    // 회원가입 클라이언트에 입력된 정보 DB(파일 시스템)에 저장
     static async save(userInfo) { 
         const users = await this.getUsers(true);
         if (users.db_id.includes(userInfo.id) ){
