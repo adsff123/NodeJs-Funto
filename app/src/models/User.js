@@ -11,15 +11,18 @@ class User {
     // 로그인 처리
     async signin() {
         const client = this.body;
-        const {db_id, db_password} = await UserStorage.getUserInfo(client.id); 
-           
-        if (db_id){
-            if (db_id === client.id && db_password === client.password){
-                return {success:true};
-            }
-            return {success:false, msg : "비밀번호가 일치하지 않습니다."};
-        } 
-        return {success:false, msg : "존재하지 않는 아이디 입니다."};
+        try {
+            const {user_id, user_password} = await UserStorage.getUserInfo(client.id);
+            if (user_id){
+                if (user_id === client.id && user_password === client.password){
+                    return {success:true};
+                }
+                return {success:false, msg : "비밀번호가 일치하지 않습니다."};
+            } 
+            return {success:false, msg : "존재하지 않는 아이디 입니다."};
+        } catch (err) {
+            return {success: false, msg : err};
+        }
     }
 
     // 회원가입 처리
