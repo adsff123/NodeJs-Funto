@@ -18,6 +18,10 @@ const output = {
     signup :  (req,res) => { 
         res.render("home/signup");
     }, 
+
+    main :  (req,res) => { 
+        res.render("home/main");
+    }, 
 };
 
 // 기능 컨트롤
