@@ -28,8 +28,12 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"><a href="#page-top">Funto</a></li>
                 <li class="sidebar-nav-item"><a href="#page-top">Home</a></li>
-                <li class="sidebar-nav-item"><a href="signup">회원가입</a></li>
-                <li class="sidebar-nav-item"><a href="signin">로그인</a></li>
+                <!-- <li class="sidebar-nav-item"><a href="signup">회원가입</a></li> -->
+                <% if(session.user_id){ %>
+                    <li class="sidebar-nav-item"><a href="signout">로그아웃</a></li>
+                <% } else{ %>
+                    <li class="sidebar-nav-item"><a href="signin">시작하기</a></li>
+                <% } %>
                 <li class="sidebar-nav-item"><a href="#about">About</a></li>
                 <li class="sidebar-nav-item"><a href="#services">Services</a></li>
                 <li class="sidebar-nav-item"><a href="#portfolio">최근 게시글</a></li>
@@ -41,7 +45,11 @@
             <div class="container px-4 px-lg-5 text-center">
                 <h1 class="mb-1">FunTo</h1>
                 <h3 class="mb-5"><em>재밌고 쉬운 투자</em></h3>
-                <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+                <% if(session.user_id){ %>
+                    <a class="btn btn-primary btn-xl" href="#about">시작하기</a>
+                <% } else{ %>
+                    <a class="btn btn-primary btn-xl" href="signin">시작하기</a>
+                <% } %>
             </div>
         </header>
         <!-- About-->
@@ -51,8 +59,7 @@
                     <div class="col-lg-10">
                         <h2>MZ에게 기대와 희망을 주는 부의 사다리 펀투</h2>
                         <p class="lead mb-5">
-                            펀투를 통해 재밌게 함께 투자해보아요!
-                            <a href="signin">펀투 시작 하기</a>
+                            펀투를 통해 재밌게 투자해보아요!
                         </p>
                         <a class="btn btn-dark btn-xl" href="#services">서비스 상세</a>
                     </div>

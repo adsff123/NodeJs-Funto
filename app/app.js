@@ -2,6 +2,8 @@
 
 // 모듈
 const express = require("express");
+const cookieParser = require('cookie-parser');
+const session = require("express-session");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -10,6 +12,18 @@ const app = express();
 
 // 라우팅 세팅
 const home = require("./src/routes/home");
+
+// cookie, session 세팅
+app.use(cookieParser());
+app.use(session({
+    key: 'sid',
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
+    }
+  }));
 
 // View 세팅
 app.set("views", "./src/views");
