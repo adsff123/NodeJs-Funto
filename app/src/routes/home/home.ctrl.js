@@ -5,6 +5,9 @@
 const User = require("../../models/User");
 const UserStorage = require("../../models/UserStorage")
 
+const Post = require("../../models/Post")
+const PostStorage = require("../../models/PostStorage")
+
  // 페이지 컨트롤
 const output = {
     index : (req,res) => { 
@@ -33,6 +36,14 @@ const output = {
             session:session
         });
     }, 
+
+    posts : (req,res) => {
+        res.render("home/posts");
+    },
+
+    postsCreate : (req,res) => {
+        res.render("home/postsCreate");
+    },
 };
 
 // 기능 컨트롤
@@ -41,10 +52,6 @@ const process = {
     signin : async (req,res) => {
         const user = new User(req.body); 
         const response = await user.signin(); 
-        // res.cookie("user", user.user_id , {
-        //     expires: new Date(Date.now() + 900000),
-        //     httpOnly: true
-        // });
         req.session.user_id = user.body.id;
         return res.json(response); 
     },
@@ -60,6 +67,13 @@ const process = {
     signup : async (req,res) => {
         const user = new User(req.body);
         const response = await user.signup(); 
+        return res.json(response);  
+    },
+
+    // 게시글 등록 
+    create : async (req,res) => {
+        const post = new Post(req.body);
+        const response = await post.create(); 
         return res.json(response);  
     }
 };
