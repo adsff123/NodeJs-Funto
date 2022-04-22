@@ -22,7 +22,7 @@ function createPost() {
     content: content.value,
   };
 
-  // 컨트롤러 + 클라이언트(회원가입) 연결
+  // 컨트롤러 + 클라이언트(게시글 작성) 연결
   fetch("/postsCreate", {
       method: "post",
       headers: {

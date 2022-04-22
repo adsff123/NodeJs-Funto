@@ -37,8 +37,21 @@ const output = {
         });
     }, 
 
-    posts : (req,res) => {
-        res.render("home/posts");
+    // 게시글 목록 page
+    posts : async (req,res) => {
+        const post = new Post(req.body);
+        const response = await post.show(req,res); 
+
+        var skip = (response.page-1)*response.limit; // 4
+        var count = response.data.length; // 5
+        var maxPage = Math.ceil(count/response.limit); // 6
+
+        console.log(response);
+        console.log(maxPage);
+        res.render("home/posts",{data:response.data,
+                                 currentPage: response.page,
+                                 limit: response.limit,
+                                 maxPage: maxPage});
     },
 
     postsCreate : (req,res) => {
@@ -75,7 +88,14 @@ const process = {
         const post = new Post(req.body);
         const response = await post.create(); 
         return res.json(response);  
-    }
+    },
+
+    // 게시글 목록 조회
+    read : async (req,res) => {
+        const post = new Post(req.body);
+        const response = await post.show(); 
+        return res.json(response);  
+    },
 };
 
 module.exports = {

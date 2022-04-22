@@ -8,11 +8,22 @@ class Post {
         this.body = body;
     }
 
-    // 회원가입 처리
+    // 로그인 처리
+    async show(req, res) {
+        const client = this.body;
+        try {    
+            const response = await PostStorage.getPostInfo(req,res);
+            return response; 
+        } catch(err){
+            return {success:false, msg: err };
+        }
+    }
+
+    // 게시글 등록 처리
     async create() {
         const item = this.body;
         try {    
-            const response = await PostStorage.save(item);
+            const response = await PostStorage.createPost(item);
             return response; 
         } catch(err){
             return {success:false, msg: err };

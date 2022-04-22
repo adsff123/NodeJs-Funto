@@ -20,5 +20,6 @@ router.get('/postsCreate', ctrl.output.postsCreate);
 router.post('/signin', ctrl.process.signin);
 router.post('/signup', ctrl.process.signup);
 router.post('/postsCreate', ctrl.process.create);
+
  
 module.exports = router;
