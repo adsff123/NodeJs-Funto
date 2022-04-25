@@ -10,10 +10,7 @@ const PostStorage = require("../../models/PostStorage")
 
  // 페이지 컨트롤
 const output = {
-    index : (req,res) => { 
-        // if(req.cookies){
-        //     console.log(req.cookies);
-        // }
+    index : (req,res) => {
         const session = req.session;
         res.render("home/index",{
             session:session
@@ -42,12 +39,10 @@ const output = {
         const post = new Post(req.body);
         const response = await post.show(req,res); 
 
-        var skip = (response.page-1)*response.limit; // 4
-        var count = response.data.length; // 5
-        var maxPage = Math.ceil(count/response.limit); // 6
+        var skip = (response.page-1)*response.limit;
+        var count = response.data.length;
+        var maxPage = Math.ceil(count/response.limit);
 
-        console.log(response);
-        console.log(maxPage);
         res.render("home/posts",{data:response.data,
                                  currentPage: response.page,
                                  limit: response.limit,
@@ -57,6 +52,14 @@ const output = {
     postsCreate : (req,res) => {
         res.render("home/postsCreate");
     },
+
+    postsRead : async (req,res) => {
+        const postsIdx = req.params.idx;
+        const post = new Post(req.body);
+        const response = await post.read(postsIdx);
+        res.render("home/postsRead", {data:response.data});
+    },
+
 };
 
 // 기능 컨트롤
@@ -94,7 +97,7 @@ const process = {
     read : async (req,res) => {
         const post = new Post(req.body);
         const response = await post.show(); 
-        return res.json(response);  
+        return res.json(response);
     },
 };
 

@@ -6,7 +6,7 @@ const db = require("../config/db");
 
 class PostStorage {
 
-    static async getPostInfo(req,res) {
+    static async getPostInfo(req, res) {
         return new Promise((resolve, reject) => {
             
             // 페이지네이션을 위한 처리
@@ -15,10 +15,8 @@ class PostStorage {
             page = !isNaN(page)?page:1;
             limit = !isNaN(limit)?limit:5;
 
-
-
             // db에서 게시글 처리
-            const query = "SELECT post_title, post_writer, date_format(post_in_date,'%Y-%m-%d') post_in_date FROM POSTS;";
+            const query = "SELECT post_seq, post_title, post_writer, date_format(post_in_date,'%Y-%m-%d') post_in_date FROM POSTS;";
             db.query(query, (err, data)=> {
                 if(err) reject(`${err}`);
                 resolve({success: true, 
@@ -37,6 +35,16 @@ class PostStorage {
                 if(err) reject(`${err}`);
                 resolve({ success: true});
             }); 
+        });
+    };
+
+    static async readPost(postsIdx) {
+        return new Promise((resolve, reject) => {
+            const query = "SELECT post_seq, post_title, post_content, post_writer, date_format(post_in_date,'%Y-%m-%d') post_in_date FROM POSTS WHERE post_seq = ?;";
+            db.query(query, [postsIdx], (err, data)=> {
+                if(err) reject(`${err}`);
+                resolve({success: true, data:data});
+            });
         });
     };
  

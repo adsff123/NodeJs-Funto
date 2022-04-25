@@ -14,6 +14,7 @@ router.get('/signin', ctrl.output.signin);
 router.get('/signout', ctrl.output.signout);
 router.get('/posts', ctrl.output.posts);
 router.get('/postsCreate', ctrl.output.postsCreate);
+router.get('/postsRead/:idx', ctrl.output.postsRead);
 
 
 // post

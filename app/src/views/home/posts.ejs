@@ -26,16 +26,16 @@
             </tr>
           <% } %>
 
-          <% data.forEach(function(post) { %>
+          <% data.forEach(function(data) { %>
             <tr>
               <td>
-                <div class="ellipsis"><%= post.post_title %></div></a>
+                <a href="/postsRead/<%= data.post_seq%>"><div class="ellipsis"><%= data.post_title %></div></a>
               </td>
               <td class="author">
-                <div class="ellipsis"><%= post.post_writer %></div>
+                <div class="ellipsis"><%= data.post_writer %></div>
               </td>
               <td class="date">
-                <span data-date="<%= post.post_in_date %>"></span>
+                <div class="ellipsis"><%= data.post_in_date %></div>
               </td>
             </tr>
           <% }) %>
@@ -53,7 +53,8 @@
           var previousBtnEnabled = currentPage>1;
           var nextBtnEnabled = currentPage<maxPage;
         %>
-        <ul class="pagination pagination-sm justify-content-center align-items-center h-100 mb-0">            <li class="page-item <%= previousBtnEnabled?'':'disabled' %>">
+        <ul class="pagination pagination-sm justify-content-center align-items-center h-100 mb-0">
+          <li class="page-item <%= previousBtnEnabled?'':'disabled' %>">
             <a class="page-link" href="/posts?page=<%= currentPage-1 %>&limit=<%= limit %>" <%= previousBtnEnabled?'':'tabindex=-1' %>>«</a>
           </li>
           <% for(i=1;i<=maxPage;i++){ %>
@@ -68,8 +69,7 @@
           </li>
         </ul>
       </nav>
-    
-      
+  
     </div>
   </section>
 
