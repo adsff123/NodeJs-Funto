@@ -6,14 +6,12 @@ const cookieParser = require('cookie-parser');
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+
 dotenv.config();
 
 const app = express();
 
-// 라우팅 세팅
-const home = require("./src/routes/home");
-
-// cookie, session 세팅
+// session 설정
 app.use(cookieParser());
 app.use(session({
     key: 'sid',
@@ -24,6 +22,23 @@ app.use(session({
       maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
     }
   }));
+
+const passport = require('./src/config/passport');
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// 라우팅 세팅
+const home = require("./src/routes/home");
+
+// Custom Middlewares // 3
+app.use(function(req,res,next){
+  console.log(req.isAuthenticated());
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.currentUser = req.user;
+  next();
+});
 
 // View 세팅
 app.set("views", "./src/views");

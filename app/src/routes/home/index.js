@@ -6,6 +6,7 @@ const express = require("express");
 const router = express.Router();
 
 const ctrl = require('./home.ctrl');
+const passport = require('../../config/passport');
 
 // get
 router.get('/', ctrl.output.index);
@@ -18,9 +19,13 @@ router.get('/postsRead/:idx', ctrl.output.postsRead);
 
 
 // post
-router.post('/signin', ctrl.process.signin);
+// router.post('/signin', ctrl.process.signin);
 router.post('/signup', ctrl.process.signup);
 router.post('/postsCreate', ctrl.process.create);
 
+router.post('/signin',
+  passport.authenticate('local-login', { successRedirect: ctrl.process.signin,
+                                   failureRedirect: '/signin'})
+);
  
 module.exports = router;
