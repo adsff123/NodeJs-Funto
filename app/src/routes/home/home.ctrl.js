@@ -8,13 +8,12 @@ const UserStorage = require("../../models/UserStorage")
 const Post = require("../../models/Post")
 const PostStorage = require("../../models/PostStorage")
 
+
+
  // 페이지 컨트롤
 const output = {
     index : (req,res) => {
-        const session = req.session;
-        res.render("home/index",{
-            session:session
-        }); 
+        res.render("home/index");
     },
     
     signin : (req,res) => { 
@@ -26,12 +25,7 @@ const output = {
     }, 
 
     signout :  (req,res) => {
-        const session = req.session;
-        req.session.destroy();
-        res.clearCookie('sid');
-        res.render("home/index",{
-            session:session
-        });
+        res.render("home/index");
     }, 
 
     // 게시글 목록 page
@@ -65,11 +59,11 @@ const output = {
 // 기능 컨트롤
 const process = {
     // 로그인
-    signin : async (req,res) => {
+    signin : async (req,res,next) => {
         const user = new User(req.body); 
-        const response = await user.signin(); 
-        req.session.user_id = user.body.id;
-        return res.json(response); 
+        const response = await user.signin();
+        console.log("######", response);
+        return res.json(response);
     },
 
     // 로그아웃

@@ -29,7 +29,7 @@
                 <li class="sidebar-brand"><a href="#page-top">Funto</a></li>
                 <li class="sidebar-nav-item"><a href="#page-top">Home</a></li>
                 <!-- <li class="sidebar-nav-item"><a href="signup">회원가입</a></li> -->
-                <% if(session.user_id){ %>
+                <% if(isAuthenticated){ %>
                     <li class="sidebar-nav-item"><a href="signout">로그아웃</a></li>
                 <% } else{ %>
                     <li class="sidebar-nav-item"><a href="signin">로그인</a></li>
@@ -43,7 +43,7 @@
             <div class="container px-4 px-lg-5 text-center">
                 <h1 class="mb-1">FunTo</h1>
                 <h3 class="mb-5"><em>재밌고 쉬운 투자</em></h3>
-                <% if(session.user_id){ %>
+                <% if(isAuthenticated){ %>
                     <a class="btn btn-primary btn-xl" href="#about">시작하기</a>
                 <% } else{ %>
                     <a class="btn btn-primary btn-xl" href="signin">시작하기</a>
