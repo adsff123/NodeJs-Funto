@@ -96,9 +96,8 @@ const process = {
     // 게시글 삭제
     delete : async (req,res) => {
         const post = new Post(req.body);
-        console.log("home.crtl.js = ", post);
         const response = await post.delete();
-        return res.json(response);  
+        return res.json(response); 
     }
 };
 

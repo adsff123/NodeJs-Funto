@@ -43,7 +43,6 @@ class Post {
     async delete(postsIdx) {
         try {    
             const item = this.body;
-            console.log("models/posts.js = ", item);
             const response = await PostStorage.deletePost(item.post_seq);
             return response; 
         } catch(err){

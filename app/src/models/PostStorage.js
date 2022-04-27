@@ -55,7 +55,6 @@ class PostStorage {
             const query = "DELETE FROM POSTS WHERE post_seq = ?;";
             db.query(query, [postsIdx], (err, data)=> {
                 if(err) reject(`${err}`);
-                console.log(data);
                 resolve({success: true});
             });
         });
