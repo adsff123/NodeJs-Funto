@@ -31,7 +31,7 @@ const output = {
     // 게시글 목록 page
     posts : async (req,res) => {
         const post = new Post(req.body);
-        const response = await post.show(req,res); 
+        const response = await post.show(req,res);
 
         var skip = (response.page-1)*response.limit;
         var count = response.data.length;
@@ -52,7 +52,7 @@ const output = {
         const post = new Post(req.body);
         const response = await post.read(postsIdx);
         res.render("home/postsRead", {data:response.data});
-    },
+    }
 
 };
 
@@ -76,7 +76,7 @@ const process = {
     signup : async (req,res) => {
         const user = new User(req.body);
         const response = await user.signup(); 
-        return res.json(response);  
+        return res.json(response);
     },
 
     // 게시글 등록 
@@ -92,6 +92,14 @@ const process = {
         const response = await post.show(); 
         return res.json(response);
     },
+
+    // 게시글 삭제
+    delete : async (req,res) => {
+        const post = new Post(req.body);
+        console.log("home.crtl.js = ", post);
+        const response = await post.delete();
+        return res.json(response);  
+    }
 };
 
 module.exports = {

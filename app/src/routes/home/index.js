@@ -18,14 +18,16 @@ router.get('/posts', ctrl.output.posts);
 router.get('/postsCreate', ctrl.output.postsCreate);
 router.get('/postsRead/:idx', ctrl.output.postsRead);
 
+
 // post
 // router.post('/signin', ctrl.process.signin);
-router.post('/signup', ctrl.process.signup);
-router.post('/postsCreate', ctrl.process.create);
 router.post('/signin', passport.authenticate('local-login', {
     failureRedirect: '/'
 }), (req,res) =>{
     res.redirect('/');
 });
+router.post('/signup', ctrl.process.signup);
+router.post('/postsCreate', ctrl.process.create);
+router.post('/postsDelete', ctrl.process.delete);
 
 module.exports = router;

@@ -7,7 +7,7 @@ const User = require("./db");
 
 // serialize & deserialize User // 2
 passport.serializeUser(function(flag, user, done) {
-    console.log("###2### serializeUser ", user)
+    // console.log("###2### serializeUser ", user)
     done(null, user.user_id);
 });
 

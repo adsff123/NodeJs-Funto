@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <%- include('../partials/head') %>
-  <script src="/js/home/postCreate.js" defer></script>
+  <script src="/js/home/postsRead.js" defer></script>
 </head>
 <body>
   <%- include('../partials/navbar') %>
@@ -23,7 +23,13 @@
 
       <div class="mt-4">
         <a class="btn btn-primary" href="/posts">뒤로가기</a>
-      </div>  
+        <% if(isAuthenticated && data[0].post_writer && currentUser.user_id === data[0].post_writer){ %> 
+          <a class="btn btn-warning" href="/posts">수정하기</a>
+          <input type="hidden" id="post_seq" value="<%= data[0].post_seq %>"></input>
+          <a id="deletebtn" class="btn btn-danger">삭제하기</a>
+        <% } %>
+
+      </div>
     </div>
   </section>
 

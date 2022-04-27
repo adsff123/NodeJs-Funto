@@ -44,7 +44,9 @@
       </table>
 
       <div class="col-2">
-        <a class="btn btn-primary" href="/postsCreate">New</a>
+        <% if(isAuthenticated){ %> 
+          <a class="btn btn-primary" href="/postsCreate">New</a>
+        <% } %>
       </div>
 
       <nav class="col-8">
