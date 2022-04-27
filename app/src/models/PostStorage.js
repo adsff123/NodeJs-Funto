@@ -28,10 +28,12 @@ class PostStorage {
     };
 
     // 회원가입 클라이언트에 입력된 정보 DB(파일 시스템)에 저장
-    static async createPost(item) { 
+    static async createPost(item, userInfo) { 
         return new Promise((resolve, reject) => {
-            const query = "INSERT INTO POSTS (post_title, post_content) VALUES(?, ?);" ;
-            db.query(query, [item.title, item.content], (err)=> {
+            console.log(item);
+            console.log(userInfo);
+            const query = "INSERT INTO POSTS (post_title, post_content, post_writer) VALUES(?, ?, ?);" ;
+            db.query(query, [item.title, item.content, userInfo.user_id], (err)=> {
                 if(err) reject(`${err}`);
                 resolve({ success: true});
             }); 

@@ -82,7 +82,7 @@ const process = {
     // 게시글 등록 
     create : async (req,res) => {
         const post = new Post(req.body);
-        const response = await post.create(); 
+        const response = await post.create(req.user); 
         return res.json(response);  
     },
 

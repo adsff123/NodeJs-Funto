@@ -34,6 +34,7 @@ const home = require("./src/routes/home");
 
 // Custom Middlewares // 3
 app.use( (req,res,next) => {
+  console.log(req.isAuthenticated());
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.currentUser = req.user;
   next();

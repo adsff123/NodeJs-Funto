@@ -20,10 +20,11 @@ class Post {
     };
 
     // 게시글 등록 처리
-    async create() {
+    async create(userInfo) {
         const item = this.body;
+        console.log(userInfo);
         try {    
-            const response = await PostStorage.createPost(item);
+            const response = await PostStorage.createPost(item,userInfo);
             return response; 
         } catch(err){
             return {success:false, msg: err };
