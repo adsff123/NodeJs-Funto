@@ -68,9 +68,8 @@ const process = {
 
     // 로그아웃
     signout : async (req,res) => {
-        const user = new User(req.body); 
-        const response = await user.signin(); 
-        return res.json(response); 
+        req.logout();
+        res.redirect('/');
     },
 
     // 회원가입 

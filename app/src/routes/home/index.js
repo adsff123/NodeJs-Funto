@@ -23,8 +23,9 @@ router.get('/postsRead/:idx', ctrl.output.postsRead);
 router.post('/signup', ctrl.process.signup);
 router.post('/postsCreate', ctrl.process.create);
 router.post('/signin', passport.authenticate('local-login', {
-    successRedirect: '/kkkkkk',
-    failureRedirect: '/signin'
-}));
+    failureRedirect: '/'
+}), (req,res) =>{
+    res.redirect('/');
+});
 
 module.exports = router;
