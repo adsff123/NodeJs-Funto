@@ -52,7 +52,11 @@ const output = {
         const post = new Post(req.body);
         const response = await post.read(postsIdx);
         res.render("home/postsRead", {data:response.data});
-    }
+    },
+
+    postsUpdate : (req,res) => {
+        res.render("home/postsUpdate");
+    },
 
 };
 
@@ -97,7 +101,7 @@ const process = {
     delete : async (req,res) => {
         const post = new Post(req.body);
         const response = await post.delete();
-        return res.json(response); 
+        return res.json(response);
     }
 };
 

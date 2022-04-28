@@ -24,7 +24,7 @@
       <div class="mt-4">
         <a class="btn btn-primary" href="/posts">뒤로가기</a>
         <% if(isAuthenticated && data[0].post_writer && currentUser.user_id === data[0].post_writer){ %> 
-          <a class="btn btn-warning" href="/posts">수정하기</a>
+          <a class="btn btn-warning" href="/postsUpdate">수정하기</a>
           <input type="hidden" id="post_seq" value="<%= data[0].post_seq %>"></input>
           <a id="deletebtn" class="btn btn-danger">삭제하기</a>
         <% } %>
